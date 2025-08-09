@@ -1,0 +1,114 @@
+<html>
+<head>
+    <center>
+    <title>Travel Booking</title>
+    <style>
+        body {
+            background-image: url('https://as2.ftcdn.net/v2/jpg/00/65/48/25/500_F_65482539_C0ZozE5gUjCafz7Xq98WB4dW6LAhqKfs.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: cursive;
+        }
+        h1 {
+            font-weight: bold;
+            font-size: 48px;
+            color: black;
+            text-align: center;
+        }
+        form {
+            align-items: center;
+            background-color: rgb(247, 245, 245);
+            padding: 20px;
+            width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        .booking-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: grey;
+            border-radius: 20px;
+            margin-top: 20px;
+            padding: 10px;
+            color: white;
+        }
+    </style>
+    <script>
+        var bookings = [];
+
+        function bookTicket(event) {
+            event.preventDefault(); // prevent form reload
+
+            var Name = document.getElementById("name").value;
+            var Passenger = document.getElementById("Passenger").value;
+            var Destination = document.getElementById("destination").value;
+            var Phone = document.getElementById("phone").value;
+
+            if (Name === "" || Destination === "") {
+                alert("Please fill in all required fields");
+                return;
+            }
+
+            var booking = {
+                name: Name,
+                passenger: Passenger,
+                destination: Destination,
+                phone: Phone
+            };
+
+            bookings.push(booking);
+            console.log(bookings);
+
+            // Create booking display box
+            let bookingBox = document.createElement('div');
+            bookingBox.className = "booking-box";
+
+            let nameNode = document.createElement('h4');
+            nameNode.innerText = "Name: " + booking.name;
+
+            let passengerNode = document.createElement('h4');
+            passengerNode.innerText = "Passenger: " + booking.passenger;
+
+            let destinationNode = document.createElement('h4');
+            destinationNode.innerText = "Destination: " + booking.destination;
+
+            let phoneNode = document.createElement('h4');
+            phoneNode.innerText = "Phone: " + booking.phone;
+
+            bookingBox.appendChild(nameNode);
+            bookingBox.appendChild(passengerNode);
+            bookingBox.appendChild(destinationNode);
+            bookingBox.appendChild(phoneNode);
+
+            document.body.appendChild(bookingBox);
+
+            alert("Saved successfully!");
+            window.location.href = "C://Users/Amulya P Shetty/day3/Trsubmit.html"; // Change if needed
+        }
+    </script>
+</head>
+<body>
+    <h1>Book Your Ticket</h1>
+    <form onsubmit="bookTicket(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Full Name"><br><br>
+
+        <label for="Passenger">Passenger:</label>
+        <input type="number" id="Passenger" placeholder="Number of Passengers"><br><br>
+
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" placeholder="Destination"><br><br>
+
+        <label for="phone">Phone No:</label>
+        <input type="tel" id="phone" placeholder="123-45-678-90" 
+               pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}-[0-9]{2}" 
+               title="Format: 123-45-678-90"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</center>
+</body>
+</html>
